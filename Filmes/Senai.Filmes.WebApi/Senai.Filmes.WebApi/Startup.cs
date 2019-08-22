@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Senai.Sstop.WebApi
+namespace Senai.Filmes.WebApi
 {
     public class Startup
     {
@@ -16,6 +16,7 @@ namespace Senai.Sstop.WebApi
         {
             services.AddMvc().SetCompatibilityVersion(
                 Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
+
 
             services.AddCors(options =>
             {
