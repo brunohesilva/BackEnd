@@ -9,5 +9,10 @@ namespace Senai.Filmes.WebApi.Domains
     {
         public int IdGenero { get; set; }
         public string Nome { get; set; }
+
+        public static implicit operator int(GeneroDomain v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

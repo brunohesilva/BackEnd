@@ -36,36 +36,33 @@ namespace Senai.Filmes.WebApi.Repositories
                             {
                                 IdFilme = Convert.ToInt32(sdr["IdFilme"]),
                                 Titulo = sdr["Titulo"].ToString(),
-                                Genero = new GeneroDomain
+                                GeneroId = new GeneroDomain
                                 {
-                                    IdEstilo = Convert.ToInt32(sdr["IdEstiloMusical"]),
+                                    IdGenero = Convert.ToInt32(sdr["IdGenero"]),
                                     Nome = sdr["NomeEstilo"].ToString()
                                 }
                             };
-                            artistas.Add(artista);
+                            filmes.Add(filme);
                         }
 
                     }
                 }
-                return artistas;
+                return filmes;
             }
 
-            public void Cadastrar(ArtistaDomain artista)
+            public void Cadastrar(FilmeDomain filme)
             {
-                // declarar a conexao
                 using (SqlConnection con = new SqlConnection(StringConexao))
                 {
-                    string Query = "INSERT INTO Artistas (Nome, IdEstiloMusical) VALUES (@Nome, @IdEstiloMusical);";
+                    string Query = "INSERT INTO Artistas (Nome, IdGenero) VALUES (@Nome, @IdGenero);";
 
                     SqlCommand cmd = new SqlCommand(Query, con);
-                    cmd.Parameters.AddWithValue("@Nome", artista.Nome);
-                    // cmd.Parameters.AddWithValue("@IdEstiloMusical", artista.Estilo.IdEstilo);
-                    cmd.Parameters.AddWithValue("@IdEstiloMusical", artista.EstiloId);
-                    // abre a conexao
+                    cmd.Parameters.AddWithValue("@Nome", filme.Titulo);
+                    cmd.Parameters.AddWithValue("@IdGenero", filme.GeneroId);
                     con.Open();
-                    // qtd de registros
                     cmd.ExecuteNonQuery();
                 }
             }
         }
+    }
 }
