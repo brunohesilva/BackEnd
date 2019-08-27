@@ -43,5 +43,15 @@ namespace Senai.Optus.WebApi.Repositories
                 ctx.SaveChanges();
             }
         }
+
+        public void Deletar(int id)
+        {
+            using (OptusContext ctx = new OptusContext())
+            {
+                Estilos EstiloBuscado = ctx.Estilos.Find(id);
+                ctx.Estilos.Remove(EstiloBuscado);
+                ctx.SaveChanges();
+            }
+        }
     }
 }
